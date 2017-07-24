@@ -1,0 +1,13 @@
+{
+    "name": "trevorlemeron/discord-bot",
+    "description": "This is my first go at a discord bot.",
+    "authors": [
+        {
+            "name": "Trevor Lemeron",
+            "email": "trevorrl@me.com"
+        }
+    ],
+    "require": {
+        "team-reflex/discord-php": "^4.0"
+    }
+}
