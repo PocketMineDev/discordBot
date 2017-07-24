@@ -1,4 +1,4 @@
-#Node Load Patrol
+# Node Load Patrol
 
 This is a very simple bot for my friends and I on discord to do dumb stuff. 
 
