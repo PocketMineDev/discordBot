@@ -37,15 +37,15 @@ $discord->on('ready', function ($discord) {
 			// If someone says 'discord', reply with "@user, get in the [blank]" and echo "COMMAND TRIGGERED"
 			$choice = $choices[array_rand($choices, 1)];
 			$message->channel->sendMessage("{$message->author}, get in the {$choice}", true);
-			echo "COMMAND TRIGGERED", PHP_EOL;
 		} elseif (strpos($content, "tony cannoli") !== false) {
 			// If someone says 'tony cannoli', reply with this picture and echo "COMMAND TRIGGERED"
 			$message->channel->sendMessage("http://i.imgur.com/VLb8J4U.jpg");
-			echo "COMMAND TRIGGERED", PHP_EOL;
+		} elseif (strpos($content, "brass monkey") !== false) {
+			// if someone says 'brass monkey', respond with "That funky monkey!" and this gif
+            $message->channel->sendMessage("That funky monkey! \n http://i.imgur.com/JQg8OOM.gif");
 		} else {
-			// echo messages that don't trigger a command
-			echo "({$message->channel->name}) - {$message->author->username}: {$message->content}", PHP_EOL;
-		};
+            // don't do anything
+        };
 	});
 });
 
