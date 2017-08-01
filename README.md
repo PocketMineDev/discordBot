@@ -1,9 +1,8 @@
 # Node Load Patrol
+Patrolling node loads day and night. The following is a list of commands / triggers currently available. 
 
-This is a very simple bot for my friends and I on discord to do dumb stuff. 
-
-To use it yourself, clone it, create a plaintext file called 'token' (no extension), and put your auth token in there. 
-
-Obviously run composer and all that jazz, but I'm assuming that knowledge. 
-
---trevxor
+1. Just get in the 'discord' already. 
+2. Who's 'tony cannoli'?
+3. Ever had a 'brass monkey'?
+4. Ask a question, see where it gets you. 
+5. Access this by typing !help. (recursion, ahoy!)

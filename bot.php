@@ -1,22 +1,16 @@
-<?php 
-
+<?php
 namespace Bot;
-
 include __DIR__.'/vendor/autoload.php';
-
+include 'spongemock.php';
 $token = file_get_contents('token');
-
 $discord = new \Discord\Discord([
 	'token' => $token
 ]);
-
 $discord->on('ready', function ($discord) {
 	echo "Node Load Patrol is Ready.", PHP_EOL;
-
 	// triggers for new messages
 	$discord->on('message', function ($message) {
 		$content = strtolower($message->content);
-
 		$choices = array(
 		'discord',
 		'FaceTime',
@@ -30,7 +24,6 @@ $discord->on('ready', function ($discord) {
 		'Slack',
 		'ICQ'
 		);
-
 		if (strpos($content, "discord") !== false && $message->author->username !== "node-lode-patrol") {
 			// If someone says 'discord', reply with "@user, get in the [blank]"
 			$choice = $choices[array_rand($choices, 1)];
@@ -45,33 +38,13 @@ $discord->on('ready', function ($discord) {
             $message->channel->sendMessage("That funky monkey! \n http://i.imgur.com/JQg8OOM.gif");
 		} elseif (strpos($content, "?") !== false && $message->author->username !== "node-lode-patrol") {
             // if someone asks a question, reply in sPoNgEbOb TeXt
-            $str1 = $content;
-            $str2 = "";
-            $index = 0;
-            $upper = true;
-            // iterate over whole string
-            while (strlen($str2) < strlen($str1)) {
-                $nextChar = $str1[$index];
-                // if the next char is alpha, make it upper or lower and add it to $str2; otherwise, just add it to $str2
-                if (ctype_alpha($nextChar)) {
-                    if ($upper) {
-                        $nextChar = strtolower($nextChar);
-                        $upper = false;
-                    } else {
-                        $nextChar = strtoupper($nextChar);
-                        $upper = true;
-                    }
-                $str2 = $str2 . $nextChar;
-                $index++;
-                } else {
-                    $nextChar = $str1[$index];
-                    $str2 = $str2 . $nextChar;
-                    $index++;
-                }
-            }
-            $message->channel->sendMessage("{$str2}");
-        };
+            $mock = spongemock($content);
+            $message->channel->sendMessage("{$mock}");
+        } elseif (strpos($content, "!help") !== false && $message->author->username !== "node-lode-patrol") {
+		    // help lists available commands, maintained in the README
+            $help = file_get_contents('README.md');
+            $message->channel->sendMessage("{$help}");
+        }
 	});
 });
-
 $discord->run();
