@@ -24,6 +24,7 @@ $discord->on('ready', function ($discord) {
 		'Slack',
 		'ICQ'
 		);
+		$lmgtfy = "http://lmgtfy.com/?q=";
 		if (strpos($content, "discord") !== false && $message->author->username !== "node-lode-patrol") {
 			// If someone says 'discord', reply with "@user, get in the [blank]"
 			$choice = $choices[array_rand($choices, 1)];
@@ -44,7 +45,14 @@ $discord->on('ready', function ($discord) {
 		    // help lists available commands, maintained in the README
             $help = file_get_contents('README.md');
             $message->channel->sendMessage("{$help}");
-        }
+        } elseif (strpos($content, "!google") !== false && $message->author->username !== "node-lode-patrol") {
+        	// use !google to have the bot help you google something
+        	// you lazy bastard
+        	$search = str_replace("!google ", "", $content);
+        	$search = str_replace(" ", "+", $search);
+        	$search = $lmgtfy . $search;
+        	$message->channel->sendMessage("{$search}");
+        };
 	});
 });
 $discord->run();

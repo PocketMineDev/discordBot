@@ -1,5 +1,4 @@
 <?php
-
 function spongemock($content) {
     $str1 = $content;
     $str2 = "";
