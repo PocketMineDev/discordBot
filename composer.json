@@ -8,6 +8,7 @@
         }
     ],
     "require": {
-        "team-reflex/discord-php": "^4.0"
+        "team-reflex/discord-php": "^4.0",
+        "jwilsson/spotify-web-api-php": "^1.12"
     }
 }

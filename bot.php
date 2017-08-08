@@ -1,15 +1,22 @@
 <?php
-namespace Bot;
-include __DIR__.'/vendor/autoload.php';
+
+require __DIR__.'/vendor/autoload.php';
 include 'spongemock.php';
-$token = file_get_contents('token');
+include 'spotify.php';
+
+$token    = file_get_contents('token');
+
 $discord = new \Discord\Discord([
 	'token' => $token
 ]);
+
 $discord->on('ready', function ($discord) {
+
 	echo "Node Load Patrol is Ready.", PHP_EOL;
+
 	// triggers for new messages
 	$discord->on('message', function ($message) {
+
 		$content = strtolower($message->content);
 		$choices = array(
 		'discord',
@@ -24,6 +31,7 @@ $discord->on('ready', function ($discord) {
 		'Slack',
 		'ICQ'
 		);
+
 		$lmgtfy = "http://lmgtfy.com/?q=";
 		if (strpos($content, "discord") !== false && $message->author->username !== "node-lode-patrol") {
 			// If someone says 'discord', reply with "@user, get in the [blank]"
@@ -52,7 +60,13 @@ $discord->on('ready', function ($discord) {
         	$search = str_replace(" ", "+", $search);
         	$search = $lmgtfy . $search;
         	$message->channel->sendMessage("{$search}");
+        } elseif (strpos($content, "!spotify") !== false && $message->author->username !== "node-lode-patrol") {
+        	// spotify search (more details in spotify.php)
+        	$search = str_replace("!spotify ", "", $content);
+        	$results = spotify($search);
+        	var_dump($results);
         };
 	});
 });
+
 $discord->run();
