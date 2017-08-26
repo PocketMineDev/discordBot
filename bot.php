@@ -45,15 +45,10 @@ $discord->on('ready', function ($discord) {
 		} elseif (strpos($content, "brass monkey") !== false && $message->author->username !== "node-lode-patrol") {
 			// if someone says 'brass monkey', respond with "That funky monkey!" and this gif
             $message->channel->sendMessage("That funky monkey! \n http://i.imgur.com/JQg8OOM.gif");
-		} elseif (strpos($content, "?") !== false && $message->author->username !== "node-lode-patrol") {
-            // if someone asks a question, reply in sPoNgEbOb TeXt, unless it's a URL
-            $url = strpos($content, "http");
-            if ($url === 0) {
-            	// do nothing
-            } else {
-            	$mock = spongemock($content);
-            	$message->channel->sendMessage("{$mock}");
-            };
+		} elseif (strpos($content, "??") !== false && $message->author->username !== "node-lode-patrol") {
+            // if someone asks a question with more than one ?, reply in sPoNgEbOb TeXt
+			$mock = spongemock($content);
+            $message->channel->sendMessage("{$mock}");
         } elseif (strpos($content, "!help") !== false && $message->author->username !== "node-lode-patrol") {
 		    // help lists available commands, maintained in the README
             $help = file_get_contents('README.md');
